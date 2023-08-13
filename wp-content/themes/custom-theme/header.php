@@ -26,14 +26,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/css/main.css" rel="stylesheet">
   <title> <?php wp_title("|", true, "right"); ?> </title>
 </head>
 <body <?php body_class(); ?>>
   <div id="wrap">
     <header>
-      <a class="skip-link screen-reader-text" href="#content"> 
+      <a class="skip-link screen-reader-text" href="#content">
         <?php esc_html_e(
           "Skip to content",
           "ct-custom"
@@ -89,7 +89,7 @@
         <div class="mobile-menu-container">
           <div id="overlay">
               <?php wp_nav_menu([
-                "menu" => "menu-1",
+                "menu" => "main-menu",
                 "menu_id" => "primary-menu",
               ]); ?>
             </div>
@@ -135,14 +135,14 @@
   <div class="tertiary-bar">
     <div class="container">
       <nav id="site-navigation" class="main-navigation desktop">
-        <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"> 
+        <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
           <?php esc_html_e(
             "Primary Menu",
             "ct-custom"
           ); ?>
-        </button> 
+        </button>
         <?php wp_nav_menu([
-          "menu" => "menu-1",
+          "menu" => "main-menu",
           "menu_id" => "primary-menu",
         ]); ?>
       </nav>

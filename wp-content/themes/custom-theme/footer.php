@@ -32,11 +32,10 @@
       <div class="row">
         <div class="footer-nav">
           <div class="nav">
-            <a href="/">Home</a>
-            <a href="/pages/sell-with-us">Sell with us</a>
-            <a href="/pages/about-us">Who are we?</a>
-            <a href="/pages/contact">Talk to us</a>
-            <a href="/pages/our-policies">Our Policies</a>
+            <?php wp_nav_menu([
+              "menu" => "footer-menu",
+              "menu_id" => "footer-menu",
+            ]); ?>
           </div>
           <div class="social">
             <a href="https://instagram.com/happyhunnykids" target="_blank" class="icon icon-instagram"><i class="fa fa-instagram icon icon-instagram" aria-hidden="true"></i></a>
@@ -46,7 +45,7 @@
         <div class="footer__content-top page-width">
         </div>
         <div class="footer-addons">
-          <div>Copyright © 2023 Happy Hunny | All rights reserved</div>
+          <div>Copyright © <?php $currentYear = date('Y'); echo $currentYear; ?> <?php the_title() ?> | All rights reserved</div>
           <div>
             <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/footer-logo-visa.svg" alt="mastercard">
             <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/footer-logo-mastercard.svg" alt="mastercard">

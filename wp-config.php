@@ -1,4 +1,6 @@
 <?php
+define( 'WP_CACHE', false ); // By SiteGround Optimizer
+
 /**
  * The base configuration for WordPress
  *
@@ -11,29 +13,28 @@
  * * Database settings
  * * Secret keys
  * * Database table prefix
- * * Localized language
  * * ABSPATH
  *
- * @link https://wordpress.org/support/article/editing-wp-config-php/
+ * @link https://wordpress.org/documentation/article/editing-wp-config-php/
  *
  * @package WordPress
  */
 
 // ** Database settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define( 'DB_NAME', 'dbajgtvcn4jgej' );
+define( 'DB_NAME', 'happyhunny' );
 
 /** Database username */
-define( 'DB_USER', 'uamwrki9b9jz2' );
+define( 'DB_USER', 'root' );
 
 /** Database password */
-define( 'DB_PASSWORD', 'rkfwh9a2wesr' );
+define( 'DB_PASSWORD', 'root' );
 
 /** Database hostname */
-define( 'DB_HOST', '127.0.0.1' );
+define( 'DB_HOST', 'localhost' );
 
 /** Database charset to use in creating database tables. */
-define( 'DB_CHARSET', 'utf8' );
+define( 'DB_CHARSET', 'utf8mb4' );
 
 /** The database collate type. Don't change this if in doubt. */
 define( 'DB_COLLATE', '' );
@@ -49,16 +50,14 @@ define( 'DB_COLLATE', '' );
  *
  * @since 2.6.0
  */
-define( 'AUTH_KEY',          'Acv~t-V3V%0@R6V5YmfhS0rXcH4Wa|yh@cEohei-n;xH_){o&~T7#L.mtAq3Wv[D' );
-define( 'SECURE_AUTH_KEY',   'B[NEEo^K(X@9XM:_K6F!$Bj^MUtF:gxLeRM^`Mu d>z(5{h:>dhY2,za(k=@E*k*' );
-define( 'LOGGED_IN_KEY',     'GhBf]W`E e1!sX@`S^Pf|wW8*]dpK8Q/A$.(9-W8RS~Z)n=~b92bF%|(|0Y;tcS^' );
-define( 'NONCE_KEY',         'F;Eer3AubV+Mpvj;zj2VN[3|oNKI.nAUEQ^]|E@)Hi?Of%LUyJt=FAnI(r??>MhW' );
-define( 'AUTH_SALT',         '<0tgULM2)+$l.(m*_!x=A+L}*6t3z?jHP~l|Atia tUQl0Fk$lb8V&$3dm@gb+>:' );
-define( 'SECURE_AUTH_SALT',  'ZHT*_i_0jjH2DYOJ!GCsPx-p)5>A,i6B48-Kp)r>bPqruE}eM+0%=E[4HD&7em0n' );
-define( 'LOGGED_IN_SALT',    'Bu=u.B$~vxrCnaK,],wGg@p6Gk!iuToS_UM8a*?r1}T9oklj01HWxM6j];..jf+B' );
-define( 'NONCE_SALT',        'hi!MAV68kB-o{T$8uS3YvwB!<:R1a_d(aJ@:J[>K_&xH26aF9=`Iv&4G#d-bjDJo' );
-define( 'WP_CACHE_KEY_SALT', 'lJ#+-<:JYKLXH7DIkPjY|%/m&a~JSRK/CNB;,jDxg6/78:Bh[^VLI-K@/eTv,ui7' );
-
+define( 'AUTH_KEY',         'Sg^hQ<Wpus97aB=z&>}z r;;fKz`&zbG5p)mk,`I64-U2ne7.wY8vT{T3Ll+uwjW' );
+define( 'SECURE_AUTH_KEY',  '7xZsp!w#3!7?2Z3n0wpe#^<W)bTPSq@7X3<).M8JS%7!_h *ct#4{!8m/z}91,Ug' );
+define( 'LOGGED_IN_KEY',    'T}=WkGJBG%li,mD^uv@A`xY?dPoPmCO4:dR6w.xV`BSPN r[ |K*NW?^<sINwY5v' );
+define( 'NONCE_KEY',        '_@T_^|OLv#<LJH?:Hp g&?sneCtZd&h*$M-K8b/l~Fb5<~?Nad{T}4%}bvA80`i1' );
+define( 'AUTH_SALT',        'dh+zkS[(DW9,SWY 3yE}&=MKOJ!P{<S{;c@B.9_AI+o5@*Ts|!DbZAK<7680(0{_' );
+define( 'SECURE_AUTH_SALT', '@hBb)HGI,l>xhl}iWqrUC./|7+Dqd;{/sIa7&i.$Hs7@1QhaihJzm>OZ0X`x.bW?' );
+define( 'LOGGED_IN_SALT',   '-U_]e(u{MRvU$Cu:U.f;Dln0CM688x`gHGi}uuYB.yqPETpK@QWP=l`m5&j9]Dyc' );
+define( 'NONCE_SALT',       'WHpCrY?/5h6Euv&!1iK/I?OJHv<fy{;ZmaI.l_#8sxlWS0zEx*^n<;)pw!aG}rh@' );
 
 /**#@-*/
 
@@ -68,12 +67,7 @@ define( 'WP_CACHE_KEY_SALT', 'lJ#+-<:JYKLXH7DIkPjY|%/m&a~JSRK/CNB;,jDxg6/78:Bh[^
  * You can have multiple installations in one database if you give each
  * a unique prefix. Only numbers, letters, and underscores please!
  */
-$table_prefix = 'kbn_';
-
-
-/* Add any custom values between this line and the "stop editing" line. */
-
-
+$table_prefix = 'os_';
 
 /**
  * For developers: WordPress debugging mode.
@@ -85,11 +79,13 @@ $table_prefix = 'kbn_';
  * For information on other constants that can be used for debugging,
  * visit the documentation.
  *
- * @link https://wordpress.org/support/article/debugging-in-wordpress/
+ * @link https://wordpress.org/documentation/article/debugging-in-wordpress/
  */
-if ( ! defined( 'WP_DEBUG' ) ) {
-	define( 'WP_DEBUG', false );
-}
+define( 'WP_DEBUG', false );
+
+/* Add any custom values between this line and the "stop editing" line. */
+
+
 
 /* That's all, stop editing! Happy publishing. */
 
@@ -99,6 +95,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /** Sets up WordPress vars and included files. */
-@include_once('/var/lib/sec/wp-settings-pre.php'); // Added by SiteGround WordPress management system
 require_once ABSPATH . 'wp-settings.php';
-@include_once('/var/lib/sec/wp-settings.php'); // Added by SiteGround WordPress management system

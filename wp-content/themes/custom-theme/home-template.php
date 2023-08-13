@@ -30,42 +30,30 @@ get_header();
             <label for="tabone">Both</label>
             <div class="tab">
               <div class="head-to-toe">
-                <a href="#">Shop Everything</a>
-                <a href="#">Accessories</a>
-                <a href="#">Jackets &amp; Knitwear</a>
-                <a href="#">Dresses &amp; Skirts</a>
-                <a href="#">Tops</a>
-                <a href="#">Bottoms</a>
-                <a href="#">Sleepwear</a>
-                <a href="#">Footwear</a>
+                <?php wp_nav_menu([
+                  "menu" => "both-menu",
+                  "menu_id" => "both-menu",
+                ]); ?>
               </div>
             </div>
             <input type="radio" name="tabs" id="tabtwo">
             <label for="tabtwo">Boys</label>
             <div class="tab">
               <div class="head-to-toe">
-                <a href="#">Shop Everything</a>
-                <a href="#">Accessories</a>
-                <a href="#">Jackets &amp; Knitwear</a>
-                <a href="#">Dresses &amp; Skirts</a>
-                <a href="#">Tops</a>
-                <a href="#">Bottoms</a>
-                <a href="#">Sleepwear</a>
-                <a href="#">Footwear</a>
+                <?php wp_nav_menu([
+                  "menu" => "boys-menu",
+                  "menu_id" => "boys-menu",
+                ]); ?>
               </div>
             </div>
             <input type="radio" name="tabs" id="tabthree">
             <label for="tabthree">Girls</label>
             <div class="tab">
               <div class="head-to-toe">
-                <a href="#">Shop Everything</a>
-                <a href="#">Accessories</a>
-                <a href="#">Jackets &amp; Knitwear</a>
-                <a href="#">Dresses &amp; Skirts</a>
-                <a href="#">Tops</a>
-                <a href="#">Bottoms</a>
-                <a href="#">Sleepwear</a>
-                <a href="#">Footwear</a>
+                <?php wp_nav_menu([
+                  "menu" => "girls-menu",
+                  "menu_id" => "girls-menu",
+                ]); ?>
               </div>
             </div>
           </div>
@@ -81,51 +69,53 @@ get_header();
       <div class="flex">
         <div class="woocommerce columns-4 ">
           <ul class="products columns-4">
-              <?php
-              // Start the custom product loop
-              $args = array(
-                  'post_type'      => 'product',
-                  'posts_per_page' => 4, // Limit the number of products to 4
-              );
+            <?php
+            // Start the custom product loop
+            $args = array(
+                'post_type'      => 'product',
+                'posts_per_page' => 4, // Limit the number of products to 4
+                'orderby'        => 'date', // Order by post date (recently added first)
+                'order'          => 'DESC', // Show the most recent products first
+            );
 
-              $products = new WP_Query( $args );
+            $products = new WP_Query( $args );
 
-              if ( $products->have_posts() ) :
-                  while ( $products->have_posts() ) :
-                      $products->the_post();
-                      global $product;
-                      ?>
+            if ( $products->have_posts() ) :
+                while ( $products->have_posts() ) :
+                    $products->the_post();
+                    global $product;
+                    ?>
 
-                      <li class="product type-product post-<?php the_ID(); ?> status-<?php echo esc_attr( get_post_status() ); ?> <?php echo implode( ' ', wc_get_product_class() ); ?>">
-                          <a href="<?php the_permalink(); ?>" class="product-link"> <!-- Add the link wrapper here -->
-                              <div class="rounded box-shadow ld-sp">
-                                  <figure class="ld-sp-img loaded">
-                                      <?php echo woocommerce_get_product_thumbnail(); // Displays the product thumbnail ?>
-                                  </figure>
-                                  <div class="ld-sp-info">
-                                      <h3><?php the_title(); ?></h3>
-                                      <span class="size-attribute">
-                                          <?php
-                                          // Check if the product has a size attribute and display it without the label "Size:"
-                                          $size_attribute = $product->get_attribute('size');
-                                          if ($size_attribute) {
-                                              echo $size_attribute;
-                                          }
-                                          ?>
-                                      </span>
-                                      <span class="price"><?php echo wc_price( $product->get_price() ) . ' ' . get_woocommerce_currency(); ?></span>
-                                  </div><!-- /.ld-sp-info -->
-                              </div><!-- /.ld-sp -->
-                          </a> <!-- Close the link wrapper here -->
-                      </li>
-                      <?php
-                  endwhile;
-                  wp_reset_postdata();
-              else:
-                  // If no products found, display a message or fallback content.
-                  echo 'No products found.';
-              endif;
-              ?>
+                    <li class="product type-product post-<?php the_ID(); ?> status-<?php echo esc_attr( get_post_status() ); ?> <?php echo implode( ' ', wc_get_product_class() ); ?>">
+                        <a href="<?php the_permalink(); ?>" class="product-link"> <!-- Add the link wrapper here -->
+                            <div class="rounded box-shadow ld-sp">
+                                <figure class="ld-sp-img loaded">
+                                    <?php echo woocommerce_get_product_thumbnail(); // Displays the product thumbnail ?>
+                                </figure>
+                                <div class="ld-sp-info">
+                                    <h3><?php the_title(); ?></h3>
+                                    <span class="size-attribute">
+                                        <?php
+                                        // Check if the product has a size attribute and display it without the label "Size:"
+                                        $size_attribute = $product->get_attribute('size');
+                                        if ($size_attribute) {
+                                            echo $size_attribute;
+                                        }
+                                        ?>
+                                    </span>
+                                    <span class="price"><?php echo wc_price( $product->get_price() ) . ' ' . get_woocommerce_currency(); ?></span>
+                                </div><!-- /.ld-sp-info -->
+                            </div><!-- /.ld-sp -->
+                        </a> <!-- Close the link wrapper here -->
+                    </li>
+                    <?php
+                endwhile;
+                wp_reset_postdata();
+            else:
+                // If no products found, display a message or fallback content.
+                echo 'No products found.';
+            endif;
+            ?>
           </ul>
         </div>
       </div>
@@ -190,58 +180,61 @@ get_header();
 <section class="section-home-products featured-products">
    <div class="container">
       <h3>Featured Products</h3>
-      <div class="flex">
-        <div class="woocommerce columns-4">
-          <ul class="products columns-4">
-              <?php
-              // Start the custom product loop
-              $args = array(
-                  'post_type'      => 'product',
-                  'posts_per_page' => 4, // Limit the number of featured products to 4
-                  // 'meta_key'       => '_featured', // Filter by featured products
-                  // 'meta_value'     => 'yes',
-              );
+      <div class="woocommerce columns-4">
+        <ul class="products columns-4">
+            <?php
+            // Start the custom product loop
+            $args = array(
+                'post_type'      => 'product',
+                'posts_per_page' => 4, // Limit the number of featured products to 4
+                'tax_query' => array(
+                      array(
+                          'taxonomy' => 'product_visibility',
+                          'field'    => 'name',
+                          'terms'    => 'featured',
+                      ),
+                  ),
+                );
 
-              $products = new WP_Query( $args );
+            $products = new WP_Query( $args );
 
-              if ( $products->have_posts() ) :
-                  while ( $products->have_posts() ) :
-                      $products->the_post();
-                      global $product;
-                      ?>
+            if ( $products->have_posts() ) :
+                while ( $products->have_posts() ) :
+                    $products->the_post();
+                    global $product;
+                    ?>
 
-                      <li class="product type-product post-<?php the_ID(); ?> status-<?php echo esc_attr( get_post_status() ); ?> <?php echo implode( ' ', wc_get_product_class() ); ?>">
-                          <a href="<?php the_permalink(); ?>" class="product-link"> <!-- Add the link wrapper here -->
-                              <div class="rounded box-shadow ld-sp">
-                                  <figure class="ld-sp-img loaded">
-                                      <?php echo woocommerce_get_product_thumbnail(); // Displays the product thumbnail ?>
-                                  </figure>
-                                  <div class="ld-sp-info">
-                                      <h3><?php the_title(); ?></h3>
-                                      <span class="size-attribute">
-                                          <?php
-                                          // Check if the product has a size attribute and display it without the label "Size:"
-                                          $size_attribute = $product->get_attribute('size');
-                                          if ($size_attribute) {
-                                              echo $size_attribute;
-                                          }
-                                          ?>
-                                      </span>
-                                      <span class="price"><?php echo wc_price( $product->get_price() ) . ' ' . get_woocommerce_currency(); ?></span>
-                                  </div><!-- /.ld-sp-info -->
-                              </div><!-- /.ld-sp -->
-                          </a> <!-- Close the link wrapper here -->
-                      </li>
-                      <?php
-                  endwhile;
-                  wp_reset_postdata();
-              else:
-                  // If no products found, display a message or fallback content.
-                  echo 'No featured products found.';
-              endif;
-              ?>
-          </ul>
-        </div>
+                    <li class="product type-product post-<?php the_ID(); ?> status-<?php echo esc_attr( get_post_status() ); ?> <?php echo implode( ' ', wc_get_product_class() ); ?>">
+                        <a href="<?php the_permalink(); ?>" class="product-link"> <!-- Add the link wrapper here -->
+                            <div class="rounded box-shadow ld-sp">
+                                <figure class="ld-sp-img loaded">
+                                    <?php echo woocommerce_get_product_thumbnail(); // Displays the product thumbnail ?>
+                                </figure>
+                                <div class="ld-sp-info">
+                                    <h3><?php the_title(); ?></h3>
+                                    <span class="size-attribute">
+                                        <?php
+                                        // Check if the product has a size attribute and display it without the label "Size:"
+                                        $size_attribute = $product->get_attribute('size');
+                                        if ($size_attribute) {
+                                            echo $size_attribute;
+                                        }
+                                        ?>
+                                    </span>
+                                    <span class="price"><?php echo wc_price( $product->get_price() ) . ' ' . get_woocommerce_currency(); ?></span>
+                                </div><!-- /.ld-sp-info -->
+                            </div><!-- /.ld-sp -->
+                        </a> <!-- Close the link wrapper here -->
+                    </li>
+                    <?php
+                endwhile;
+                wp_reset_postdata();
+            else:
+                // If no products found, display a message or fallback content.
+                echo 'No featured products found.';
+            endif;
+            ?>
+        </ul>
       </div>
    </div>
 </section>
